@@ -6,12 +6,14 @@ const helmet = require("helmet");
 const app = express();
 const salesRoutes = require("./src/routes/sales");
 const expensesRoutes = require("./src/routes/expenses");
+const summaryRoutes = require("./src/routes/summary");
 
 app.use(express.json());
-app.use("/api/sales", salesRoutes);
-app.use("/api/expense", expensesRoutes);
 app.use(cors());
 app.use(helmet());
+app.use("/api/sales", salesRoutes);
+app.use("/api/expense", expensesRoutes);
+app.use("/api/summary", summaryRoutes);
 
 app.get("/health", (req, res) => {
   res.json({
