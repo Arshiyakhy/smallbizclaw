@@ -4,7 +4,7 @@ const { eq } = require("drizzle-orm");
 
 const auth = async (req, res, next) => {
   try {
-    const name = req.headers["x-api-key"];
+    const name = req.headers["x-api-key"] || req.query.apiKey;
     const api = await db.query.business.findFirst({
       where: (business, { eq }) => eq(business.apiKey, name),
     });
